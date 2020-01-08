@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ImageButton sharePostBtn;
     private ImageButton commentsBtn;
+    private Button calendarBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +39,16 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent showCommentsIntent = new Intent(MainActivity.this,postActivity.class);
                 startActivity(showCommentsIntent);
+                finish();
+            }
+        });
+
+        calendarBtn = (Button) findViewById(R.id.calendarBtn);
+        calendarBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent goCalendar = new Intent(MainActivity.this,calendarActivity.class);
+                startActivity(goCalendar);
                 finish();
             }
         });
