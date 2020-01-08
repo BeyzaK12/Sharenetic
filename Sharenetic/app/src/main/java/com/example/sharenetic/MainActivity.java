@@ -3,6 +3,7 @@ package com.example.sharenetic;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton sharePostBtn;
     private ImageButton commentsBtn;
     private Button calendarBtn;
+    private ImageButton logout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +52,23 @@ public class MainActivity extends AppCompatActivity {
                 Intent goCalendar = new Intent(MainActivity.this,calendarActivity.class);
                 startActivity(goCalendar);
                 finish();
+            }
+        });
+
+        logout = (ImageButton) findViewById(R.id.logoutBtn);
+        logout.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+                SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("remember", "false");
+                editor.apply();
+
+                Intent homeIntent = new Intent(MainActivity.this, loginActivity.class);
+                startActivity(homeIntent);
+                finish();
+
             }
         });
     }
