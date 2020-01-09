@@ -55,7 +55,6 @@ public class homeFragment extends Fragment {
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     List<Post> postList;
-    Button myButton;
 
 
     public homeFragment() {

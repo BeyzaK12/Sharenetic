@@ -66,13 +66,6 @@ public class calendarActivity extends AppCompatActivity {
         downloadButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                compactCalendar.setVisibility(View.INVISIBLE);
-                month.setVisibility(View.INVISIBLE);
-                exp.setVisibility(View.INVISIBLE);
-                downloadButton.setVisibility(View.INVISIBLE);
-                addN.setVisibility(View.INVISIBLE);
-
-                imageView.setVisibility(View.VISIBLE);
 
                 new DownloadImageTask().execute(pictureURL);
 
@@ -172,6 +165,14 @@ public class calendarActivity extends AppCompatActivity {
             return DownloadImage(urls[0]);
         }
         protected void onPostExecute(Bitmap result) {
+            compactCalendar.setVisibility(View.INVISIBLE);
+            month.setVisibility(View.INVISIBLE);
+            exp.setVisibility(View.INVISIBLE);
+            downloadButton.setVisibility(View.INVISIBLE);
+            addN.setVisibility(View.INVISIBLE);
+
+            imageView.setVisibility(View.VISIBLE);
+
             imageView.setImageBitmap(result);
         }
     }

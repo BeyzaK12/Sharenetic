@@ -55,18 +55,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        /*
-        commentsBtn = (ImageButton) findViewById(R.id.commentsBtn);
-        commentsBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent showCommentsIntent = new Intent(MainActivity.this,postActivity.class);
-                startActivity(showCommentsIntent);
-                finish();
-            }
-        });
-        */
-
         calendarBtn = (Button) findViewById(R.id.calendarBtn);
         calendarBtn.setOnClickListener(new View.OnClickListener() {
             @Override

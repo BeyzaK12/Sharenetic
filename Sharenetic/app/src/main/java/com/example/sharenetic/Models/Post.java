@@ -75,8 +75,6 @@ public class Post {
     }
 
     public String convertTimeStamp(){
-        Date now = new Date();
-        long timestamp = now.getTime();
         SimpleDateFormat sdf = new SimpleDateFormat("EEE, MMM d, ''yy");
         String dateStr = sdf.format(timeStamp);
         return dateStr;
