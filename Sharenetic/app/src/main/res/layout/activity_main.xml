@@ -6,6 +6,94 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/main_container"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/top_layout">
+
+        <TextView
+            android:id="@+id/username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="3dp"
+            android:text="Beyza Kurt"
+            android:textColor="#2667A5"
+            android:textSize="17dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/post"
+            app:layout_constraintEnd_toStartOf="@+id/commentsBtn"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/post"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/post"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/textview_border1"
+            android:inputType="textMultiLine"
+            android:padding="10dp"
+            android:text="Hello friends! Does anyone know when the GUI Programming final exam?"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/classs"
+            app:layout_constraintEnd_toStartOf="@+id/commentsBtn"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/username" />
+
+        <TextView
+            android:id="@+id/classs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="16dp"
+            android:text="GUI Programming"
+            android:textColor="#2B77C2"
+            android:textSize="16dp"
+            android:textStyle="italic"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/post"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/post"
+            app:layout_constraintTop_toBottomOf="@+id/post" />
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="2dp"
+            android:text="Tue, Jan 7, '20"
+            android:textColor="#412B77C2"
+            android:textSize="16dp"
+            app:layout_constraintStart_toStartOf="@+id/post"
+            app:layout_constraintTop_toBottomOf="@+id/post" />
+
+        <ImageButton
+            android:id="@+id/commentsBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:background="#ffFFFF"
+            app:layout_constraintBottom_toBottomOf="@+id/post"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/post"
+            app:layout_constraintTop_toTopOf="@+id/post"
+            app:srcCompat="@mipmap/comments" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <LinearLayout
         android:id="@+id/top_layout"
         android:layout_width="match_parent"
@@ -45,12 +133,14 @@
                 android:id="@+id/calendarBtn"
                 android:layout_width="108dp"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
                 android:background="#FFFFFF"
                 android:shadowColor="#000000"
                 android:text="CALENDAR"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#000000"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/logoutBtn"
                 app:layout_constraintStart_toEndOf="@+id/classesBtn"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -58,11 +148,10 @@
                 android:id="@+id/logoutBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
                 android:background="#00FFFFFF"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.8"
-                app:layout_constraintStart_toEndOf="@+id/calendarBtn"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@android:drawable/ic_lock_power_off" />
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -86,14 +175,13 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:clickable="true"
         app:layout_constraintBottom_toTopOf="@+id/addPostBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/top_layout">
+        app:layout_constraintTop_toBottomOf="@+id/layout">
 
     </FrameLayout>
 

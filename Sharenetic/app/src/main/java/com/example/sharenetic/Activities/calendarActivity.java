@@ -4,12 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +28,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
@@ -37,8 +42,13 @@ public class calendarActivity extends AppCompatActivity {
     private TextView month;
     private TextView exp;
     private Button downloadButton;
+    private ImageButton addN;
+    private ImageView imageView;
 
-    static String pictureURL = "https://image.slidesharecdn.com/8d5ce9b8-c700-4709-81b9-3c68d5246de0-151128045200-lva1-app6892/95/ms-in-mis-course-curriculum-1-638.jpg";
+
+    final private int REQUEST_INTERNET = 123;
+    static String pictureURL = "http://2016.igem.org/wiki/images/e/e9/Schedule_Overview.png";
+    //static String pictureURL = "https://image.slidesharecdn.com/8d5ce9b8-c700-4709-81b9-3c68d5246de0-151128045200-lva1-app6892/95/ms-in-mis-course-curriculum-1-638.jpg";
 
     CompactCalendarView compactCalendar;
     private SimpleDateFormat dateFormatMonth = new SimpleDateFormat("MMMM- yyyy", Locale.getDefault());
@@ -48,20 +58,24 @@ public class calendarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
 
+        addN = (ImageButton) findViewById(R.id.addEvent);
+        imageView = (ImageView) findViewById(R.id.imageView);
+        imageView.setVisibility(View.INVISIBLE);
+
         downloadButton = (Button)findViewById(R.id.downloadButton);
         downloadButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                compactCalendar.setVisibility(View.INVISIBLE);
+                month.setVisibility(View.INVISIBLE);
+                exp.setVisibility(View.INVISIBLE);
+                downloadButton.setVisibility(View.INVISIBLE);
+                addN.setVisibility(View.INVISIBLE);
 
-                File syllabusFile = new File(Environment.getExternalStorageDirectory().getPath()+"/syllabus.jpg");
-                Toast.makeText(calendarActivity.this, Environment.getExternalStorageDirectory().getPath(), Toast.LENGTH_LONG).show();
+                imageView.setVisibility(View.VISIBLE);
 
-                if(syllabusFile.exists()) {
-                    Toast.makeText(calendarActivity.this, "File Already Exist", Toast.LENGTH_SHORT).show();
-                }else{
-                    Toast.makeText(calendarActivity.this, "File Downloading", Toast.LENGTH_SHORT).show();
-                    new Downloader().execute(pictureURL);
-                }
+                new DownloadImageTask().execute(pictureURL);
+
             }
         });
 
@@ -112,55 +126,55 @@ public class calendarActivity extends AppCompatActivity {
         });
 
     }
-    public class Downloader extends AsyncTask<String, String, Object> {
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
 
-        @Override
-        protected Object doInBackground(String[] objects) {
-            int number;
-            try {
-                URL url = new URL(objects[0]);
-                URLConnection connection = url.openConnection();
-                connection.connect();
+    private InputStream OpenHttpConnection(String urlString) throws IOException {
+        InputStream in = null;
+        int response = -1;
 
-                int fileLength = connection.getContentLength();
-
-                InputStream input = new BufferedInputStream(url.openStream(), 10 * 1024);
-                OutputStream output = new FileOutputStream(Environment.getExternalStorageDirectory().getPath()
-                        +"/syllabus.jpg");
-
-                byte data[] = new byte[1024]; //Buffer name
-
-                int total = 0;
-
-
-                while ((number = input.read(data)) > 0){
-                    // > 0 is equal to != -1
-                    output.write(data, 0 , number);
-                    total += number;
-                    publishProgress(String.valueOf((total * 100 ) / fileLength));
-                }
-
-                output.flush();
-                output.close();
-                input.close();
-
-
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
+        URL url = new URL(urlString);
+        URLConnection conn = url.openConnection();
+        if (!(conn instanceof HttpURLConnection))
+            throw new IOException("Not an HTTP connection!");
+        try {
+            HttpURLConnection httpConn = (HttpURLConnection) conn;
+            httpConn.setAllowUserInteraction(false);
+            httpConn.setInstanceFollowRedirects(true);
+            httpConn.setRequestMethod("GET");
+            httpConn.connect();
+            response = httpConn.getResponseCode();
+            if (response == HttpURLConnection.HTTP_OK){
+                in = httpConn.getInputStream();
             }
-            return null;
         }
-
-        @Override
-        protected void onPostExecute(Object o) {
-            Toast.makeText(calendarActivity.this, "Download finished!", Toast.LENGTH_SHORT).show();
+        catch (Exception ex){
+            Log.d("Networking", ex.getLocalizedMessage());
+            throw new IOException("Error connecting");
         }
-
+        return in;
     }
+    private Bitmap DownloadImage(String URL){
+        Bitmap bitmap = null;
+        InputStream in = null;
+        try {
+            in = OpenHttpConnection(URL);
+            bitmap = BitmapFactory.decodeStream(in);
+            in.close();
+
+        } catch (IOException e1) {
+            Log.d("NetworkingActivity", e1.getLocalizedMessage());
+        }
+        return bitmap;
+    }
+
+    public class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+
+        protected Bitmap doInBackground(String... urls) {
+            return DownloadImage(urls[0]);
+        }
+        protected void onPostExecute(Bitmap result) {
+            imageView.setImageBitmap(result);
+        }
+    }
+
+
 }

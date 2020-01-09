@@ -23,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
     private Button classesBtn;
     private ImageButton logout;
 
+    private ImageButton commentsBtn;
+
     private com.example.sharenetic.Fragments.homeFragment homeFragment;
 
     @Override
@@ -33,8 +35,15 @@ public class MainActivity extends AppCompatActivity {
         homeFragment = new homeFragment();
         replaceFragment(homeFragment);
 
-
-
+        commentsBtn = (ImageButton) findViewById(R.id.commentsBtn);
+        commentsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent showComments = new Intent(MainActivity.this, postActivity.class);
+                startActivity(showComments);
+                finish();
+            }
+        });
 
         sharePostBtn = (ImageButton) findViewById(R.id.addPostBtn);
         sharePostBtn.setOnClickListener(new View.OnClickListener() {
