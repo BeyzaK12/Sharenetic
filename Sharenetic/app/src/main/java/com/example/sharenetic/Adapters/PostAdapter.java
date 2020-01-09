@@ -1,4 +1,4 @@
-package com.example.sharenetic;
+package com.example.sharenetic.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,14 +9,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.sharenetic.Models.Post;
+import com.example.sharenetic.R;
+
 import java.util.List;
 
-public class postAdapter extends RecyclerView.Adapter<postAdapter.MyViewHolder> {
+public class PostAdapter extends RecyclerView.Adapter<PostAdapter.MyViewHolder> {
 
     Context mContext;
     List<Post> mData;
 
-    public postAdapter(Context mContext, List<Post> mData) {
+    public PostAdapter(Context mContext, List<Post> mData) {
         this.mContext = mContext;
         this.mData = mData;
     }
@@ -31,8 +34,10 @@ public class postAdapter extends RecyclerView.Adapter<postAdapter.MyViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-
-        holder.postText.setText(mData.get(position).getPost());
+        holder.username.setText(mData.get(position).getUser_name());
+        holder.post.setText(mData.get(position).getPost());
+        holder.time.setText(mData.get(position).convertTimeStamp());
+        holder.classs.setText(mData.get(position).getsClass());
 
     }
 
@@ -41,16 +46,21 @@ public class postAdapter extends RecyclerView.Adapter<postAdapter.MyViewHolder> 
         return mData.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder{
+    public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView postText;
+        TextView username;
+        TextView post;
+        TextView time;
+        TextView classs;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            postText = itemView.findViewById(R.id.username);
+            username = itemView.findViewById(R.id.username);
+            post = itemView.findViewById(R.id.post);
+            time = itemView.findViewById(R.id.time);
+            classs = itemView.findViewById(R.id.classs);
+
         }
     }
-
-
 }

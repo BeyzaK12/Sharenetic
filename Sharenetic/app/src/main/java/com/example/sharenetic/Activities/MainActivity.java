@@ -1,23 +1,29 @@
-package com.example.sharenetic;
+package com.example.sharenetic.Activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.sharenetic.Fragments.homeFragment;
+import com.example.sharenetic.R;
+
 public class MainActivity extends AppCompatActivity {
 
     private ImageButton sharePostBtn;
     private Button calendarBtn;
+    private Button classesBtn;
     private ImageButton logout;
 
-    private homeFragment homeFragment;
+    private com.example.sharenetic.Fragments.homeFragment homeFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,11 +34,13 @@ public class MainActivity extends AppCompatActivity {
         replaceFragment(homeFragment);
 
 
+
+
         sharePostBtn = (ImageButton) findViewById(R.id.addPostBtn);
         sharePostBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent sharePostIntent = new Intent(MainActivity.this,sharePostActivity.class);
+                Intent sharePostIntent = new Intent(MainActivity.this, sharePostActivity.class);
                 startActivity(sharePostIntent);
                 finish();
             }
@@ -54,8 +62,18 @@ public class MainActivity extends AppCompatActivity {
         calendarBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent goCalendar = new Intent(MainActivity.this,calendarActivity.class);
+                Intent goCalendar = new Intent(MainActivity.this, calendarActivity.class);
                 startActivity(goCalendar);
+                finish();
+            }
+        });
+
+        classesBtn = (Button) findViewById(R.id.classesBtn);
+        classesBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent goClasses = new Intent(MainActivity.this, classesActivity.class);
+                startActivity(goClasses);
                 finish();
             }
         });
@@ -84,4 +102,5 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.commit();
 
     }
+
 }

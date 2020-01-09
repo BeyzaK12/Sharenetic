@@ -1,19 +1,17 @@
-package com.example.sharenetic;
+package com.example.sharenetic.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.usage.UsageEvents;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.EventLog;
 import android.view.View;
-import android.widget.CalendarView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.sharenetic.R;
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 import com.github.sundeepk.compactcalendarview.domain.Event;
 

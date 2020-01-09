@@ -39,7 +39,7 @@
         android:background="@drawable/textview_border2"
         android:inputType="textMultiLine"
         android:padding="10dp"
-        android:text="Hey guys! Does anyone know the office hours of the Mr. Kılıç?"
+        android:text="Hello friends! Does anyone know when the GUI Programming final exam?"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="#000000"
         android:textSize="20sp"
@@ -111,7 +111,7 @@
                     android:background="@drawable/textview_border1"
                     android:inputType="textMultiLine"
                     android:padding="10dp"
-                    android:text="Monday 13:30-15:30"
+                    android:text="9 Jan 10:00. I added details to the calendar."
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                     android:textColor="#000000"
                     android:textSize="18sp"
@@ -127,8 +127,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                app:layout_constraintBottom_toTopOf="@+id/cmm2layout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cmmlayout">
@@ -137,7 +135,7 @@
                     android:id="@+id/username1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="username"
+                    android:text="Beyza Kurt"
                     android:textColor="#2667A5"
                     android:textSize="16dp"
                     android:textStyle="bold"
@@ -154,7 +152,7 @@
                     android:background="@drawable/textview_border1"
                     android:inputType="textMultiLine"
                     android:padding="10dp"
-                    android:text="text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text "
+                    android:text="Ok, thanks"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                     android:textColor="#000000"
                     android:textSize="18sp"
@@ -162,48 +160,6 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/username1" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/cmm2layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cmm1layout">
-
-                <TextView
-                    android:id="@+id/username"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="username"
-                    android:textColor="#2667A5"
-                    android:textSize="16dp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toTopOf="@+id/cmm2"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="@+id/cmm2"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/cmm2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/textview_border1"
-                    android:inputType="textMultiLine"
-                    android:padding="10dp"
-                    android:text="text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text "
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                    android:textColor="#000000"
-                    android:textSize="18sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
